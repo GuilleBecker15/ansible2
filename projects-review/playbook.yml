@@ -5,16 +5,19 @@
     - serverb.lab.example.com
     - serverc.lab.example.com
     - serverd.lab.example.com
-
+    
+  vars:
+    apachepkg: httpd
+    apachesvc: httpd
   tasks:
     - name: Install apache
       yum:
-        name: apache2
+        name: "{{ apachepkg }}"
         state: latest
 
     - name: Enable and start apache
       service:
-        name: apache2
+        name: "{{ apachesvc }}"
         enabled: true
         state: started
   
