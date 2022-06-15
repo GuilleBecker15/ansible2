@@ -1,0 +1,4 @@
+---
+- name: Actualizar la caché de hechos
+  hosts: all
+  garher_facts: yes
