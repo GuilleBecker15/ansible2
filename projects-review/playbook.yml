@@ -6,25 +6,25 @@
     - serverc.lab.example.com
     - serverd.lab.example.com
     
-  vars:
-    apachepkg: httpd
-    apachesvc: httpd
+  #vars:
+  #  apachepkg: httpd
+  #  apachesvc: httpd
   gather_facts: no
     
   tasks:
     - name: ver los facts
       debug:
         var: ansible_facts
-    - name: Install apache
+    - name: Install {{ apachepkg }}
       yum:
         name: "{{ apachepkg }}"
         state: latest
 
-    - name: Enable and start apache
+    - name: Enable and {{ estado }} {{ servidor }}
       service:
-        name: "{{ apachesvc }}"
+        name: "{{ servidor }}"
         enabled: true
-        state: started
+        state: "{{ estado }}"
   
     - name: Install firewalld
       yum:
@@ -51,7 +51,7 @@
         dest: /var/www/html/index.html
         
   handlers:
-    - name: restart apache
+    - name: restart {{ servidor }}
       service:
-        name: "{{ apachesvc }}"
+        name: "{{ servidor }}"
         state: restarted
