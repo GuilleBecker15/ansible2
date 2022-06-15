@@ -9,7 +9,12 @@
   vars:
     apachepkg: httpd
     apachesvc: httpd
+  gather_facts: no
+    
   tasks:
+    - name: ver los facts
+      debug:
+        var: ansible_facts
     - name: Install apache
       yum:
         name: "{{ apachepkg }}"
