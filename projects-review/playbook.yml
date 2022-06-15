@@ -40,6 +40,10 @@
         state: enabled
       notify:
         - restart apache        
+    - name: create index.html
+      copy:
+        content: "Hola Mundo"
+        dest: /var/www/html/index.html
         
   handlers:
     - name: restart apache
